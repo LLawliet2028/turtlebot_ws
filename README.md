@@ -27,7 +27,7 @@ This workspace contains:
 
 <div align="center">
 
-https://github.com/LLawliet2028/turtlebot_ws/assets/demo.mp4
+https://github.com/LLawliet2028/turtlebot_ws/docs/videos/demo.mp4
 
 *TurtleBot3 navigating through obstacles using custom DWA local planner*
 
