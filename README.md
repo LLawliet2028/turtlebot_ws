@@ -35,6 +35,62 @@ https://github.com/LLawliet2028/turtlebot_ws/assets/demo.mp4
 
 > **Note:** If the video doesn't display above, you can view it directly [here](docs/videos/demo.mp4)
 
+### Simulation Environments
+
+<table>
+  <tr>
+    <td align="center">
+      <img src="docs/images/rviz_laser_scan.png" alt="RViz Laser Scan" width="400"/>
+      <br />
+      <em>RViz Visualization with Laser Scan Data</em>
+    </td>
+    <td align="center">
+      <img src="docs/images/turtlebot3_world.png" alt="TurtleBot3 World" width="400"/>
+      <br />
+      <em>TurtleBot3 World Environment</em>
+    </td>
+  </tr>
+  <tr>
+    <td align="center">
+      <img src="docs/images/turtlebot3_house.png" alt="TurtleBot3 House" width="400"/>
+      <br />
+      <em>House Environment</em>
+    </td>
+    <td align="center">
+      <img src="docs/images/manipulation_sim.png" alt="Manipulation" width="400"/>
+      <br />
+      <em>TurtleBot3 with OpenManipulator</em>
+    </td>
+  </tr>
+  <tr>
+    <td align="center" colspan="2">
+      <img src="docs/images/dwa_visualization.png" alt="DWA Visualization" width="400"/>
+      <br />
+      <em>DWA Planner Trajectory Visualization</em>
+    </td>
+  </tr>
+</table>
+
+### Obstacle Avoidance Demo
+
+<div align="center">
+
+> **Video:** [View Obstacle Avoidance Demo](docs/videos/demo.mp4)
+
+*Real-time obstacle avoidance with dynamic obstacles*
+
+</div>
+
+### Path Planning in Complex Environment
+
+<div align="center">
+
+<img src="docs/images/navigation_demo.gif" alt="Navigation Demo" width="600"/>
+
+*Autonomous navigation from start to goal position*
+
+</div>
+
 ## ✨ Features
 
 - 🤖 Complete TurtleBot3 simulation environment
