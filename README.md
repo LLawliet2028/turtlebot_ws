@@ -37,27 +37,15 @@ https://github.com/LLawliet2028/turtlebot_ws/assets/demo.mp4
 
 ### Simulation Environments
 
-<table>
-  <tr>
-    <td align="center">
-      <img src="docs/images/rviz_laser_scan.png" alt="RViz Laser Scan" width="400"/>
-      <br />
-      <em>RViz Visualization with Laser Scan Data</em>
-    </td>
-    <td align="center">
-      <img src="docs/images/turtlebot3_world.png" alt="TurtleBot3 World" width="400"/>
-      <br />
-      <em>TurtleBot3 World Environment</em>
-    </td>
-  </tr>
-  <tr>
-    <td align="center" colspan="2">
-      <img src="docs/images/dwa_visualization.png" alt="DWA Visualization" width="400"/>
-      <br />
-      <em>DWA Planner Trajectory Visualization</em>
-    </td>
-  </tr>
-</table>
+<div align="center">
+  <img src="docs/images/rviz.jpeg" alt="RViz Laser Scan Visualization" width="700"/>
+  <br />
+  <em>RViz Visualization with Laser Scan Data and TurtleBot3</em>
+</div>
+
+<br />
+
+> **Note:** More simulation environment screenshots will be added soon.
 
 ### Obstacle Avoidance Demo
 
