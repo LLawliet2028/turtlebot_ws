@@ -51,18 +51,6 @@ https://github.com/LLawliet2028/turtlebot_ws/assets/demo.mp4
     </td>
   </tr>
   <tr>
-    <td align="center">
-      <img src="docs/images/turtlebot3_house.png" alt="TurtleBot3 House" width="400"/>
-      <br />
-      <em>House Environment</em>
-    </td>
-    <td align="center">
-      <img src="docs/images/manipulation_sim.png" alt="Manipulation" width="400"/>
-      <br />
-      <em>TurtleBot3 with OpenManipulator</em>
-    </td>
-  </tr>
-  <tr>
     <td align="center" colspan="2">
       <img src="docs/images/dwa_visualization.png" alt="DWA Visualization" width="400"/>
       <br />
