@@ -1,18 +1,4 @@
 #!/usr/bin/env python3
-"""
-Fixed DWA Local Planner for ROS2 Humble
-
-Improvements:
-- Proper __init__ usage
-- Correct quaternion->yaw conversion
-- Predict trajectories from current robot pose
-- Robust LaserScan indexing and NaN/Inf handling
-- Correct distance math (dx**2 + dy**2)
-- Persistent stagnation detection
-- Proper main guard
-- Marker visualization shows actual best trajectory
-"""
-
 import rclpy
 from rclpy.node import Node
 from rclpy.qos import QoSProfile, ReliabilityPolicy, HistoryPolicy
