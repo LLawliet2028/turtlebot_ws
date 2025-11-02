@@ -4,6 +4,7 @@ A ROS 2 workspace for TurtleBot3 simulation and navigation with a custom Python 
 
 ## 📋 Table of Contents
 - [Overview](#overview)
+- [Demo](#demo)
 - [Features](#features)
 - [Prerequisites](#prerequisites)
 - [Installation](#installation)
@@ -20,6 +21,69 @@ This workspace contains:
 - **Custom DWA Local Planner**: A Python-based implementation of the Dynamic Window Approach algorithm for local path planning
 - **TurtleBot3 Simulations**: Official TurtleBot3 simulation packages including Gazebo environments, fake nodes, and manipulation support
 
+## 🎬 Demo
+
+### Navigation with Custom DWA Planner
+
+<div align="center">
+
+https://github.com/LLawliet2028/turtlebot_ws/assets/demo.mp4
+
+*TurtleBot3 navigating through obstacles using custom DWA local planner*
+
+</div>
+
+> **Note:** If the video doesn't display above, you can view it directly [here](docs/videos/demo.mp4)
+
+### Simulation Environments
+
+<table>
+  <tr>
+    <td align="center">
+      <img src="docs/images/turtlebot3_world.png" alt="TurtleBot3 World" width="400"/>
+      <br />
+      <em>TurtleBot3 World Environment</em>
+    </td>
+    <td align="center">
+      <img src="docs/images/turtlebot3_house.png" alt="TurtleBot3 House" width="400"/>
+      <br />
+      <em>House Environment</em>
+    </td>
+  </tr>
+  <tr>
+    <td align="center">
+      <img src="docs/images/manipulation_sim.png" alt="Manipulation" width="400"/>
+      <br />
+      <em>TurtleBot3 with OpenManipulator</em>
+    </td>
+    <td align="center">
+      <img src="docs/images/dwa_visualization.png" alt="DWA Visualization" width="400"/>
+      <br />
+      <em>DWA Planner Trajectory Visualization</em>
+    </td>
+  </tr>
+</table>
+
+### Obstacle Avoidance Demo
+
+<div align="center">
+
+> **Video:** [View Obstacle Avoidance Demo](docs/videos/demo.mp4)
+
+*Real-time obstacle avoidance with dynamic obstacles*
+
+</div>
+
+### Path Planning in Complex Environment
+
+<div align="center">
+
+<img src="docs/images/navigation_demo.gif" alt="Navigation Demo" width="600"/>
+
+*Autonomous navigation from start to goal position*
+
+</div>
+
 ## ✨ Features
 
 - 🤖 Complete TurtleBot3 simulation environment
@@ -33,7 +97,7 @@ This workspace contains:
 
 ### System Requirements
 - **OS**: Ubuntu 22.04 (Jammy) recommended
-- **ROS 2**: Humble
+- **ROS 2**: Humble Hawksbill or later
 - **Python**: 3.10+
 
 ### Dependencies
@@ -87,8 +151,8 @@ source install/setup.bash
 ```
 turtlebot_ws/
 ├── src/
-│   ├── dwa_algo/          # Custom DWA implementation
-│   │   ├── dwa_algo/
+│   ├── dwa_local_planner/          # Custom DWA implementation
+│   │   ├── dwa_local_planner/
 │   │   │   ├── __init__.py
 │   │   │   └── dwa_planner.py     # Main DWA algorithm
 │   │   ├── package.xml
@@ -132,7 +196,7 @@ ros2 run turtlebot3_teleop teleop_keyboard
 
 **Run the DWA planner node:**
 ```bash
-ros2 run dwa_algo dwa_planner
+ros2 run dwa_local_planner dwa_planner
 ```
 
 The DWA planner subscribes to:
