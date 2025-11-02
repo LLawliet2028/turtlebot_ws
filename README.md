@@ -33,7 +33,7 @@ This workspace contains:
 
 ### System Requirements
 - **OS**: Ubuntu 22.04 (Jammy) recommended
-- **ROS 2**: Humble Hawksbill or later
+- **ROS 2**: Humble
 - **Python**: 3.10+
 
 ### Dependencies
@@ -87,8 +87,8 @@ source install/setup.bash
 ```
 turtlebot_ws/
 ├── src/
-│   ├── dwa_local_planner/          # Custom DWA implementation
-│   │   ├── dwa_local_planner/
+│   ├── dwa_algo/          # Custom DWA implementation
+│   │   ├── dwa_algo/
 │   │   │   ├── __init__.py
 │   │   │   └── dwa_planner.py     # Main DWA algorithm
 │   │   ├── package.xml
@@ -132,7 +132,7 @@ ros2 run turtlebot3_teleop teleop_keyboard
 
 **Run the DWA planner node:**
 ```bash
-ros2 run dwa_local_planner dwa_planner
+ros2 run dwa_algo dwa_planner
 ```
 
 The DWA planner subscribes to:
