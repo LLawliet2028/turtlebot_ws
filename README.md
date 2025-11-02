@@ -55,18 +55,6 @@ https://github.com/LLawliet2028/turtlebot_ws/assets/demo.mp4
 
 *Real-time obstacle avoidance with dynamic obstacles*
 
-</div>
-
-### Path Planning in Complex Environment
-
-<div align="center">
-
-<img src="docs/images/navigation_demo.gif" alt="Navigation Demo" width="600"/>
-
-*Autonomous navigation from start to goal position*
-
-</div>
-
 ## ✨ Features
 
 - 🤖 Complete TurtleBot3 simulation environment
