@@ -411,10 +411,10 @@ This project includes:
 
 If you use this workspace in your research, please cite:
 ```bibtex
-@software{turtlebot_ws_2024,
+@software{turtlebot_ws_2025,
   author = {LLawliet2028},
   title = {TurtleBot3 Workspace with Custom DWA Local Planner},
-  year = {2024},
+  year = {2025},
   url = {https://github.com/LLawliet2028/turtlebot_ws}
 }
 ```
