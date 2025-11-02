@@ -393,7 +393,7 @@ Contributions are welcome! Please see [CONTRIBUTING.md](src/turtlebot3_simulatio
 ## License
 
 This project includes:
-- Custom DWA Local Planner: [Specify your license]
+- Custom DWA Local Planner:  Apache License 2.0 (see [LICENSE](LICENSE)
 - TurtleBot3 Simulations: Apache License 2.0 (see [LICENSE](src/turtlebot3_simulations/LICENSE))
 
 ## Author
