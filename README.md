@@ -204,18 +204,19 @@ And publishes to:
 - `/cmd_vel` - Velocity commands
 - `/dwa_trajectories` - Trajectory visualization for RViz
 
-### Navigation with Nav2
+### Simulation of DWA local planner
 
 **Launch navigation stack with custom DWA planner:**
 ```bash
 # Terminal 1: Launch Gazebo
 ros2 launch turtlebot3_gazebo turtlebot3_world.launch.py
 
-# Terminal 2: Launch Navigation
-ros2 launch nav2_bringup navigation_launch.py
+# Terminal 2: Launch Dwa custom package
+ros2 run dwa_algo dwa_planner
 
 # Terminal 3: Launch RViz
-ros2 launch nav2_bringup rviz_launch.py
+ros2 launch turtlebot3_bringup rviz2.launch.py
+
 ```
 
 ### Manipulation Simulation
