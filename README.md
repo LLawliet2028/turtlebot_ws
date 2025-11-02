@@ -27,7 +27,7 @@ This workspace contains:
 
 <div align="center">
 
-[https://github.com/LLawliet2028/turtlebot_ws/docs/videos/demo.mp4](https://github.com/LLawliet2028/turtlebot_ws/blob/main/docs/videos/demo.mp4)
+https://github.com/LLawliet2028/turtlebot_ws/assets/demo.mp4
 
 *TurtleBot3 navigating through obstacles using custom DWA local planner*
 
@@ -134,19 +134,19 @@ source install/setup.bash
 ```
 turtlebot_ws/
 ├── src/
-│   ├── dwa_algo/          # Custom DWA implementation
+│   ├── dwa_algo/                       # Custom DWA implementation
 │   │   ├── dwa_algo/
 │   │   │   ├── __init__.py
-│   │   │   └── dwa_planner.py     # Main DWA algorithm
+│   │   │   └── dwa_planner.py         # Main DWA algorithm with visualization
 │   │   ├── package.xml
 │   │   ├── setup.cfg
 │   │   └── setup.py
 │   │
-│   └── turtlebot3_simulations/     # TurtleBot3 simulation packages
-│       ├── turtlebot3_fake_node/   # Simulated robot without Gazebo
-│       ├── turtlebot3_gazebo/      # Gazebo simulation environments
+│   └── turtlebot3_simulations/         # TurtleBot3 simulation packages
+│       ├── turtlebot3_fake_node/       # Simulated robot without Gazebo
+│       ├── turtlebot3_gazebo/          # Gazebo simulation environments
 │       ├── turtlebot3_manipulation_gazebo/  # Manipulation simulations
-│       └── turtlebot3_simulations/ # Meta-package
+│       └── turtlebot3_simulations/     # Meta-package
 ```
 
 ## 🎮 Usage
@@ -183,12 +183,14 @@ ros2 run dwa_algo dwa_planner
 ```
 
 The DWA planner subscribes to:
-- `/odom` - Robot odometry
-- `/scan` - Laser scan data
+- `/odom` - Robot odometry (pose and velocity)
+- `/scan` - Laser scan data for obstacle detection
 - `/goal_pose` - Target goal position
+- `/move_base_simple/goal` - RViz 2D Nav Goal support
 
 And publishes to:
 - `/cmd_vel` - Velocity commands
+- `/dwa_trajectories` - Trajectory visualization for RViz
 
 ### Navigation with Nav2
 
@@ -219,31 +221,124 @@ The Dynamic Window Approach (DWA) is a velocity-based local planner that:
 - Selects optimal velocity commands in real-time
 
 ### Key Features
-- Python-based implementation for easy modification
-- Configurable parameters for different robot behaviors
-- Real-time obstacle avoidance
-- Smooth trajectory generation
+- **Python-based implementation** for easy modification and understanding
+- **Real-time obstacle avoidance** using laser scan data
+- **Smooth trajectory generation** with unicycle model integration
+- **Stagnation detection** to prevent the robot from getting stuck
+- **RViz visualization** of all evaluated trajectories
+- **Goal queue support** for multi-waypoint navigation
 
-### Algorithm Parameters (configurable in `dwa_planner.py`)
-- `max_speed`: Maximum linear velocity
-- `min_speed`: Minimum linear velocity
-- `max_yaw_rate`: Maximum angular velocity
-- `max_accel`: Maximum linear acceleration
-- `max_delta_yaw_rate`: Maximum angular acceleration
-- `velocity_resolution`: Velocity sampling resolution
-- `dt`: Time step for trajectory prediction
-- `predict_time`: Trajectory prediction horizon
-- `to_goal_cost_gain`: Weight for goal direction
-- `speed_cost_gain`: Weight for velocity preference
-- `obstacle_cost_gain`: Weight for obstacle avoidance
+### Algorithm Parameters
+
+The planner uses a `DWAConfig` class with the following configurable parameters:
+
+**Velocity Limits:**
+- `max_linear_vel`: 0.5 m/s - Maximum forward speed
+- `min_linear_vel`: 0.0 m/s - Minimum forward speed
+- `max_angular_vel`: 1.5 rad/s - Maximum turning rate
+- `min_angular_vel`: -1.5 rad/s - Minimum turning rate
+
+**Acceleration Limits:**
+- `max_linear_accel`: 0.5 m/s² - Maximum linear acceleration
+- `max_angular_accel`: 1.5 rad/s² - Maximum angular acceleration
+
+**Sampling Resolution:**
+- `linear_vel_samples`: 7 - Number of linear velocity samples
+- `angular_vel_samples`: 15 - Number of angular velocity samples
+
+**Trajectory Prediction:**
+- `prediction_time`: 2.0 seconds - Look-ahead time horizon
+- `dt`: 0.1 seconds - Time step for trajectory prediction
+
+**Cost Function Weights:**
+- `goal_cost_weight`: 1.0 - Weight for goal direction
+- `obstacle_cost_weight`: 3.0 - Weight for obstacle avoidance (highest priority)
+- `velocity_cost_weight`: 0.1 - Weight for velocity preference
+
+**Safety Parameters:**
+- `robot_radius`: 0.18 m - Robot footprint radius
+- `min_obstacle_distance`: 0.25 m - Minimum safe distance from obstacles
+- `goal_tolerance`: 0.15 m - Distance to consider goal reached
+
+### ROS 2 Topics
+
+**Subscriptions:**
+- `/odom` (nav_msgs/Odometry) - Robot odometry for pose and velocity
+- `/scan` (sensor_msgs/LaserScan) - Laser scan data for obstacle detection
+- `/goal_pose` (geometry_msgs/PoseStamped) - Target goal position
+- `/move_base_simple/goal` (geometry_msgs/PoseStamped) - RViz 2D Nav Goal support
+
+**Publications:**
+- `/cmd_vel` (geometry_msgs/Twist) - Velocity commands to robot
+- `/dwa_trajectories` (visualization_msgs/MarkerArray) - Trajectory visualization in RViz
+
+### Features Explained
+
+**1. Dynamic Window Generation**
+The planner computes a dynamic window of admissible velocities based on:
+- Current robot velocity
+- Maximum acceleration constraints
+- Velocity limits
+
+**2. Trajectory Prediction**
+For each velocity pair (linear, angular), the planner:
+- Predicts the robot's path over the prediction horizon
+- Uses unicycle motion model for accurate trajectory simulation
+- Transforms predictions to world frame coordinates
+
+**3. Cost Evaluation**
+Each trajectory is evaluated with three cost components:
+- **Goal Cost**: Distance from trajectory endpoint to goal
+- **Obstacle Cost**: Inverse distance to nearest obstacle (infinity for collisions)
+- **Velocity Cost**: Penalty for low speeds and high angular velocities
+
+**4. Stagnation Detection**
+The planner monitors if the best cost remains unchanged for 25 consecutive iterations and stops the robot to prevent futile motion.
+
+**5. Trajectory Visualization**
+All evaluated trajectories are published to RViz with color coding:
+- **Green**: Selected best trajectory
+- **Red**: Collision trajectories (infinite cost)
+- **Purple-Blue gradient**: Valid trajectories (darker = better cost)
 
 ### Customization Example
 ```python
-# Modify parameters in dwa_planner.py
-self.max_speed = 0.5  # m/s
-self.max_yaw_rate = 1.0  # rad/s
-self.obstacle_cost_gain = 2.0  # Increase obstacle avoidance
+# Modify parameters in dwa_planner.py (DWAConfig class)
+class DWAConfig:
+    def __init__(self):
+        self.max_linear_vel = 0.7  # Increase max speed
+        self.obstacle_cost_weight = 5.0  # More conservative obstacle avoidance
+        self.goal_cost_weight = 2.0  # Stronger goal attraction
+        self.prediction_time = 3.0  # Longer look-ahead
 ```
+
+### Running the DWA Planner
+
+**Launch the planner node:**
+```bash
+ros2 run dwa_algo dwa_planner
+```
+
+**Send a goal (command line):**
+```bash
+ros2 topic pub /goal_pose geometry_msgs/msg/PoseStamped "{
+  header: {frame_id: 'map'},
+  pose: {
+    position: {x: 2.0, y: 1.0, z: 0.0},
+    orientation: {x: 0.0, y: 0.0, z: 0.0, w: 1.0}
+  }
+}"
+```
+
+**Or use RViz 2D Nav Goal tool:**
+1. Launch RViz: `ros2 launch nav2_bringup rviz_launch.py`
+2. Click "2D Nav Goal" button
+3. Click and drag on the map to set goal position and orientation
+
+**Visualize trajectories in RViz:**
+1. Add MarkerArray display
+2. Set topic to `/dwa_trajectories`
+3. Observe real-time trajectory evaluation
 
 ## 🌍 Available Gazebo Worlds
 
