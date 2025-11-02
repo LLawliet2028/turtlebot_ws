@@ -2,7 +2,7 @@
 
 A ROS 2 workspace for TurtleBot3 simulation and navigation with a custom Python implementation of the Dynamic Window Approach (DWA) local planner.
 
-## 📋 Table of Contents
+## Table of Contents
 - [Overview](#overview)
 - [Demo](#demo)
 - [Features](#features)
@@ -15,13 +15,13 @@ A ROS 2 workspace for TurtleBot3 simulation and navigation with a custom Python 
 - [Contributing](#contributing)
 - [License](#license)
 
-## 🔍 Overview
+## Overview
 
 This workspace contains:
 - **Custom DWA Local Planner**: A Python-based implementation of the Dynamic Window Approach algorithm for local path planning
 - **TurtleBot3 Simulations**: Official TurtleBot3 simulation packages including Gazebo environments, fake nodes, and manipulation support
 
-## 🎬 Demo
+## Demo
 
 ### Navigation with Custom DWA Planner
 
@@ -79,16 +79,16 @@ https://github.com/LLawliet2028/turtlebot_ws/assets/demo.mp4
 
 </div>
 
-## ✨ Features
+##  Features
 
-- 🤖 Complete TurtleBot3 simulation environment
-- 🎯 Custom DWA (Dynamic Window Approach) local planner implementation
-- 🌍 Multiple Gazebo worlds for testing and development
-- 🦾 TurtleBot3 manipulation support with Gazebo
-- 📊 RViz configurations for visualization
-- 🔧 Flexible and extensible architecture
+-  Complete TurtleBot3 simulation environment
+-  Custom DWA (Dynamic Window Approach) local planner implementation
+-  Multiple Gazebo worlds for testing and development
+-  TurtleBot3 manipulation support with Gazebo
+-  RViz configurations for visualization
+-  Flexible and extensible architecture
 
-## 📦 Prerequisites
+## Prerequisites
 
 ### System Requirements
 - **OS**: Ubuntu 22.04 (Jammy) recommended
@@ -116,7 +116,7 @@ export TURTLEBOT3_MODEL=burger  # or waffle, waffle_pi
 source /opt/ros/humble/setup.bash
 ```
 
-## 🚀 Installation
+## Installation
 
 1. **Clone the repository**
 ```bash
@@ -161,7 +161,7 @@ turtlebot_ws/
 │       └── turtlebot3_simulations/     # Meta-package
 ```
 
-## 🎮 Usage
+## Usage
 
 ### Basic Gazebo Simulation
 
@@ -226,7 +226,7 @@ ros2 launch turtlebot3_bringup rviz2.launch.py
 ros2 launch turtlebot3_manipulation_gazebo turtlebot3_manipulation.launch.py
 ```
 
-## 🎯 Custom DWA Local Planner
+## Custom DWA Local Planner
 
 The Dynamic Window Approach (DWA) is a velocity-based local planner that:
 - Generates velocity samples within the robot's dynamic constraints
@@ -353,14 +353,14 @@ ros2 topic pub /goal_pose geometry_msgs/msg/PoseStamped "{
 2. Set topic to `/dwa_trajectories`
 3. Observe real-time trajectory evaluation
 
-## 🌍 Available Gazebo Worlds
+## Available Gazebo Worlds
 
 1. **Empty World** - Basic testing environment
 2. **TurtleBot3 World** - Obstacles and structures
 3. **TurtleBot3 House** - Indoor home environment
 4. **Custom Worlds** - Located in `turtlebot3_gazebo/worlds/`
 
-## 🔧 Configuration
+## Configuration
 
 ### Robot Model Selection
 ```bash
@@ -372,7 +372,7 @@ RViz configuration files are available in:
 - `turtlebot3_gazebo/rviz/`
 - `turtlebot3_manipulation_gazebo/rviz/`
 
-## 🐛 Troubleshooting
+## Troubleshooting
 
 ### Gazebo Models Not Found
 ```bash
@@ -392,14 +392,14 @@ rm -rf build install log
 colcon build --symlink-install
 ```
 
-## 📚 Resources
+## Resources
 
 - [TurtleBot3 Official Documentation](https://emanual.robotis.com/docs/en/platform/turtlebot3/overview/)
 - [ROS 2 Navigation2 Documentation](https://navigation.ros.org/)
 - [DWA Algorithm Paper](https://ieeexplore.ieee.org/document/580977)
 - [Gazebo Tutorials](https://gazebosim.org/docs)
 
-## 🤝 Contributing
+## Contributing
 
 Contributions are welcome! Please see [CONTRIBUTING.md](src/turtlebot3_simulations/CONTRIBUTING.md) for guidelines.
 
@@ -410,24 +410,24 @@ Contributions are welcome! Please see [CONTRIBUTING.md](src/turtlebot3_simulatio
 4. Push to the branch (`git push origin feature/amazing-feature`)
 5. Open a Pull Request
 
-## 📄 License
+## License
 
 This project includes:
 - Custom DWA Local Planner: [Specify your license]
 - TurtleBot3 Simulations: Apache License 2.0 (see [LICENSE](src/turtlebot3_simulations/LICENSE))
 
-## 👤 Author
+## Author
 
 **LLawliet2028**
 - GitHub: [@LLawliet2028](https://github.com/LLawliet2028)
 
-## 🙏 Acknowledgments
+## Acknowledgments
 
 - ROBOTIS for TurtleBot3 platform and simulation packages
 - ROS 2 and Navigation2 communities
 - DWA algorithm original authors
 
-## 📝 Citation
+## Citation
 
 If you use this workspace in your research, please cite:
 ```bibtex
@@ -439,8 +439,6 @@ If you use this workspace in your research, please cite:
 }
 ```
 
----
 
-**Happy Robot Navigation! 🤖🚀**
 
 For questions or issues, please open an issue on GitHub.
